@@ -1,9 +1,11 @@
 package guru.springframework.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Recipe 
@@ -11,6 +13,7 @@ public class Recipe
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String description;
 	private Integer prepTime;
 	private Integer cookTime;
@@ -18,6 +21,10 @@ public class Recipe
 	private String source;
 	private String url;
 	private String directions;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Notes notes;
+	
 	public String getDescription() {
 		return description;
 	}
